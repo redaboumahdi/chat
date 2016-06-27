@@ -90,7 +90,8 @@ public class MessageListener extends Thread {
                             temp += st1.nextToken();
                             temp += " : ";
                             temp += st1.nextElement();
-                            st1.nextElement();
+			    temp += "receiver : "
+                            temp += st1.nextElement();
                         }
                         temp += "\n";
                     }
