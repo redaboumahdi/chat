@@ -35,7 +35,6 @@ public class SendMessage extends Thread {
             String id_send = "2";
             String id_rec = "1";
             String message =  etxt.getText().toString();
-            System.out.println(message);
             URL url = new URL(login_url);
             HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
             httpURLConnection.setRequestMethod("POST");
@@ -53,15 +52,13 @@ public class SendMessage extends Thread {
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream, "iso-8859-1"));
             String result = "";
             String line = "";
+
             while ((line = bufferedReader.readLine()) != null) {
                 result += line;
             }
             bufferedReader.close();
             inputStream.close();
             httpURLConnection.disconnect();
-            System.out.println(result);
-
-            System.out.println("coucou");
 
         } catch( MalformedURLException e){
             e.printStackTrace();

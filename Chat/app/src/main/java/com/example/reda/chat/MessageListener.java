@@ -16,6 +16,7 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.util.StringTokenizer;
 
 /**
  * Created by reda on 26/06/16.
@@ -51,6 +52,11 @@ public class MessageListener extends Thread {
         try {
 
             while(true) {
+                try {
+                    Thread.sleep(3000);                 //1000 milliseconds is one second.
+                } catch(InterruptedException ex) {
+                    Thread.currentThread().interrupt();
+                }
                 String id = "1";
                 URL url = new URL(login_url);
                 HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
@@ -71,6 +77,17 @@ public class MessageListener extends Thread {
                 while ((line = bufferedReader.readLine()) != null) {
                     result += line;
                 }
+                StringTokenizer st = new StringTokenizer(result, ";");
+                String temp = "";
+                while (st.hasMoreElements()) {
+                    if(st.countTokens() < 5) {
+                        temp += st.nextElement();
+                        temp += "\n";
+                    }
+                    else st.nextElement();
+
+                }
+                result = temp;
                 bufferedReader.close();
                 inputStream.close();
                 httpURLConnection.disconnect();
