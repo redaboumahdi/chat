@@ -9,5 +9,6 @@ $chat = new ChatMock($id);
 $len = count($chat->getMessages());
 
 for($i = 0; $i < $len ;$i++) {
-print_r($chat->getMessages()[$i]['message']);
+	print_r($chat->getMessages()[$i]['message']);
+	print_r(';');
 }
