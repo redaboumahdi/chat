@@ -81,7 +81,17 @@ public class MessageListener extends Thread {
                 String temp = "";
                 while (st.hasMoreElements()) {
                     if(st.countTokens() < 5) {
-                        temp += st.nextElement();
+                        //temp += st.nextElement();
+                        String temp1 = "";
+                        temp1 += st.nextToken();
+                        StringTokenizer st1 = new StringTokenizer(temp1, "_");
+                        while (st1.hasMoreElements()){
+                            temp += "sender ";
+                            temp += st1.nextToken();
+                            temp += " : ";
+                            temp += st1.nextElement();
+                            st1.nextElement();
+                        }
                         temp += "\n";
                     }
                     else st.nextElement();

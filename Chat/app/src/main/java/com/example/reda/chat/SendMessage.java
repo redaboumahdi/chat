@@ -32,8 +32,8 @@ public class SendMessage extends Thread {
     public void run(){
         String login_url = "http://192.168.0.27/chatphp/send.php";
         try {
-            String id_send = "2";
-            String id_rec = "1";
+            String id_send = "1";
+            String id_rec = "2";
             String message =  etxt.getText().toString();
             URL url = new URL(login_url);
             HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
