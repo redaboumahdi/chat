@@ -51,6 +51,32 @@ class ChatMock {
     
     return $messages;
   }
+  
+  public function getMessage($id_conv){
+  
+      $messages = array();
+    $query = "
+        SELECT 
+          *
+        FROM `chat`
+        WHERE ( id_send = $this->id AND id_rec = $id_conv )   OR ( id_rec = $this->id AND id_send = $id_conv )
+        "
+        ;
+
+    // Execute the query
+    $resultObj = $this->dbConnection->query($query);
+    // Fetch all the rows at once.
+    while ($row = $resultObj->fetch_assoc()) {
+      $messages[] = $row;
+    }
+    
+    return $messages;
+  
+  
+  
+  
+  
+  }
 
   /**
    * Add a new message to the chat table
@@ -69,7 +95,7 @@ class ChatMock {
     
     $query = "
       INSERT INTO `chat`
-      VALUES ({$cUserId}, {$userIDREC},'{$cMessage}', 'null')";
+      VALUES ({$cUserId}, {$userIDREC},'{$cMessage}', now(),1)";
     $result = $this->dbConnection->query($query);
     
     if ($result !== false) {
@@ -80,6 +106,21 @@ class ChatMock {
     }
     
     return $addResult;
+  }
+  
+  public function readMessage($idconv){
+  		$query = "
+		UPDATE chat SET readMessage = 0
+		WHERE id_send = $idconv AND id_rec= $this->id	
+  		";
+  		$result = $this->dbConnection->query($query);
+    if ($result !== false) {
+      // Get the last inserted row id.
+      echo "alright !!";
+    } else {
+      echo $this->dbConnection->error;
+    }
+  
   }
 
 }

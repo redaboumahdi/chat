@@ -1,0 +1,20 @@
+<?php
+
+require_once('./chat.php');
+
+
+$id = $_POST['ID'];
+$id_conv = $_POST['ID_CONV'];
+
+
+$chat = new ChatMock($id);
+$len = count($chat->getMessages($id_conv));
+
+for($i = 0; $i < $len ;$i++) {
+	print_r($chat->getMessages$id_conv()[$i]['id_send']);
+	print_r('_');
+	print_r($chat->getMessages($id_conv)[$i]['message']);
+	print_r('_');
+	print_r($chat->getMessages($id_conv)[$i]['id_rec']);
+	print_r(';');
+}

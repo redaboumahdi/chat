@@ -1,0 +1,16 @@
+<?php
+
+require_once('./chat.php');
+
+class User {
+	private $id;
+	
+	public function __construct($i){
+		$this->id = $i;	
+	}
+	
+	 
+
+
+
+}
